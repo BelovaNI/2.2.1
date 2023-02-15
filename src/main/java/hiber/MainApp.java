@@ -6,11 +6,10 @@ import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class MainApp {
-   public static void main(String[] args) throws SQLException {
+   public static void main(String[] args) throws NullPointerException {
       AnnotationConfigApplicationContext context = 
             new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -43,8 +42,12 @@ public class MainApp {
          System.out.println();
       }
 
-         System.out.println(userService.getUserByCar("Lada", 250));
-
+         try {
+            System.out.println(userService.getUserByCar("Lada", 250));
+         }catch (Exception e) {
+            System.out.println("Ошибка");
+            e.printStackTrace();
+         }
 
       context.close();
    }
